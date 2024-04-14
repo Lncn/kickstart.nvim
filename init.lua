@@ -538,9 +538,25 @@ require('lazy').setup({
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
       local servers = {
-        -- clangd = {},
-        -- gopls = {},
-        -- pyright = {},
+        clangd = {},
+        gopls = {},
+        -- pyright = {}, -- Should probably used pyright for python, but FUCK NPM/Node versions on Ubuntu 20.04
+        pylsp = {
+          settings = {
+            pylsp = {
+              plugins = {
+                pylint = { enabled = true },
+                black = { enabled = false },
+                autopep8 = { enabled = false },
+                mccabe = { enabled = false },
+                yapf = { enabled = false },
+                pyflakes = { enabled = false },
+                pycodestyle = { enabled = false },
+                preload = { enabled = false },
+              },
+            },
+          },
+        },
         -- rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -580,6 +596,7 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'black', -- Used to format Lua code
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -631,6 +648,13 @@ require('lazy').setup({
         -- You can use a sub-list to tell conform to run *until* a formatter
         -- is found.
         -- javascript = { { "prettierd", "prettier" } },
+        python = { 'black' },
+        go = { 'goimports', 'gofmt' },
+        -- Use the "*" filetype to run formatters on all filetypes.
+        ['*'] = { 'codespell' },
+        -- Use the "_" filetype to run formatters on filetypes that don't
+        -- have other formatters configured.
+        ['_'] = { 'trim_whitespace' },
       },
     },
   },
