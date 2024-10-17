@@ -135,24 +135,24 @@ return {
     --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
     local servers = {
       clangd = {},
-      gopls = {},
+      --gopls = {},
       -- pyright = {}, -- Should probably used pyright for python, but FUCK NPM/Node versions on Ubuntu 20.04
-      pylsp = {
-        settings = {
-          pylsp = {
-            plugins = {
-              pylint = { enabled = true },
-              black = { enabled = false },
-              autopep8 = { enabled = false },
-              mccabe = { enabled = false },
-              yapf = { enabled = false },
-              pyflakes = { enabled = false },
-              pycodestyle = { enabled = false },
-              preload = { enabled = false },
-            },
-          },
-        },
-      },
+      --pylsp = {
+      --  settings = {
+      --    pylsp = {
+      --      plugins = {
+      --        pylint = { enabled = true },
+      --        black = { enabled = false },
+      --        autopep8 = { enabled = false },
+      --        mccabe = { enabled = false },
+      --        yapf = { enabled = false },
+      --        pyflakes = { enabled = false },
+      --        pycodestyle = { enabled = false },
+      --        preload = { enabled = false },
+      --      },
+      --    },
+      --  },
+      --},
       -- rust_analyzer = {},
       -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
       --
@@ -163,20 +163,20 @@ return {
       -- tsserver = {},
       --
 
-      lua_ls = {
-        -- cmd = {...},
-        -- filetypes = { ...},
-        -- capabilities = {},
-        settings = {
-          Lua = {
-            completion = {
-              callSnippet = 'Replace',
-            },
-            -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-            -- diagnostics = { disable = { 'missing-fields' } },
-          },
-        },
-      },
+      --lua_ls = {
+      --  -- cmd = {...},
+      --  -- filetypes = { ...},
+      --  -- capabilities = {},
+      --  settings = {
+      --    Lua = {
+      --      completion = {
+      --        callSnippet = 'Replace',
+      --      },
+      --      -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
+      --      -- diagnostics = { disable = { 'missing-fields' } },
+      --    },
+      --  },
+      --},
     }
 
     -- Ensure the servers and tools above are installed
